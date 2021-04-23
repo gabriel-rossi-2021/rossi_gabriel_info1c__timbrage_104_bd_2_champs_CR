@@ -298,7 +298,7 @@ def genre_delete_wtf():
                 data_films_attribue_genre_delete = session['data_films_attribue_genre_delete']
                 print("data_films_attribue_genre_delete ", data_films_attribue_genre_delete)
 
-                flash(f"Effacer le genre de façon définitive de la BD !!!", "danger")
+                flash(f"Effacer le collaborateur de façon définitive de la BD !!!", "danger")
                 # L'utilisateur vient de cliquer sur le bouton de confirmation pour effacer...
                 # On affiche le bouton "Effacer genre" qui va irrémédiablement EFFACER le genre
                 btn_submit_del = True
@@ -342,7 +342,7 @@ def genre_delete_wtf():
             session['data_films_attribue_genre_delete'] = data_films_attribue_genre_delete
 
             # Opération sur la BD pour récupérer "id_genre" et "nom_famille" de la "t_genre"
-            str_sql_id_collaborateur = "SELECT id_collaborateur, nom_famille FROM t_collaborateur WHERE id_collaborateur = %(value_id_collaborateur)s"
+            str_sql_id_collaborateur = "SELECT id_collaborateur, nom_famille, prenom FROM t_collaborateur WHERE id_collaborateur = %(value_id_collaborateur)s"
 
             mybd_curseur.execute(str_sql_id_collaborateur, valeur_select_dictionnaire)
             # Une seule valeur est suffisante "fetchone()",
@@ -353,7 +353,7 @@ def genre_delete_wtf():
 
             # Afficher la valeur sélectionnée dans le champ du formulaire "genre_delete_wtf.html"
             form_delete.nom_collaborateur_delete_wtf.data = data_nom_collaborateur["nom_famille"]
-
+            form_delete.prenom_collaborateur_delete_wtf.data = data_nom_collaborateur["prenom"]
             # Le bouton pour l'action "DELETE" dans le form. "genre_delete_wtf.html" est caché.
             btn_submit_del = False
 
